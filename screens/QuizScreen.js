@@ -1,17 +1,13 @@
 import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 
-const HomeScreen = ({ navigation }) => {
+const QuizScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>한글 공부</Text>
+            <Text style={styles.title}>퀴즈</Text>
             <Button
-                title="자음과 모음 배우기"
-                onPress={() => navigation.navigate('Learn')}
-            />
-            <Button
-                title="퀴즈"
-                onPress={() => navigation.navigate('Quiz')}
+                title="홈으로 돌아가기"
+                onPress={() => navigation.navigate('Home')}
             />
         </View>
     );
@@ -29,4 +25,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default HomeScreen;
+export default QuizScreen;
