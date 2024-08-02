@@ -5,6 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './screens/HomeScreen';
 import LearnScreen from './screens/LearnScreen';
 import QuizScreen from './screens/QuizScreen';
+import ConsonantsScreen from "./screens/ConsonantsScreen";
+import VowelsScreen from "./screens/VowelsScreen";
 
 const Stack = createStackNavigator();
 
