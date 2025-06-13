@@ -14,7 +14,21 @@ class MyApp extends StatelessWidget {
       create: (_) => TTSService(),
       child: MaterialApp(
         title: '한글 공부 앱',
-        theme: ThemeData(fontFamily: 'NanumGothic'),
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          textTheme: TextTheme(
+            bodyLarge: TextStyle(fontSize: 28, color: Colors.black),
+            titleLarge: TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black),
+          ),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blueAccent,
+              foregroundColor: Colors.white,
+              padding: EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+              textStyle: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ),
         home: HomeScreen(),
       ),
     );

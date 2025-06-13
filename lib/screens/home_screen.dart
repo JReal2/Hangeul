@@ -11,17 +11,24 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              child: Text('자음 공부'),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => ConsonantScreen()));
-              },
+            SizedBox(
+              width: 200,
+              child: ElevatedButton(
+                child: Text('자음 공부'),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => ConsonantScreen()));
+                },
+              ),
             ),
-            ElevatedButton(
-              child: Text('모음 공부'),
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => VowelScreen()));
-              },
+            SizedBox(height: 20),
+            SizedBox(
+              width: 200,
+              child: ElevatedButton(
+                child: Text('모음 공부'),
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => VowelScreen()));
+                },
+              ),
             ),
           ],
         ),
