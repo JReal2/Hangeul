@@ -1,14 +1,31 @@
 import 'package:flutter/material.dart';
 import '../services/tts_service.dart';
 import 'package:provider/provider.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
 
-final consonants = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
-final consonantWords = {
-  'ㄱ': ['고양이', '가방'],
-  'ㄴ': ['나무', '노래'],
-};
+class ConsonantScreen extends StatefulWidget {
+  @override
+  State<ConsonantScreen> createState() => _ConsonantScreenState();
+}
 
-class ConsonantScreen extends StatelessWidget {
+class _ConsonantScreenState extends State<ConsonantScreen> {
+  Map<String, dynamic> consonantData = {};
+
+  @override
+  void initState() {
+    super.initState();
+    loadJson();
+  }
+
+  Future<void> loadJson() async {
+    final String response = await rootBundle.loadString('assets/data/consonants.json');
+    final data = await json.decode(response);
+    setState(() {
+      consonantData = data;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final tts = Provider.of<TTSService>(context);
@@ -16,7 +33,9 @@ class ConsonantScreen extends StatelessWidget {
       appBar: AppBar(title: Text('자음 공부')),
       body: ListView(
         padding: EdgeInsets.all(16),
-        children: consonants.map((letter) {
+        children: consonantData.entries.map((entry) {
+          final letter = entry.key;
+          final words = List<String>.from(entry.value);
           return Card(
             margin: EdgeInsets.symmetric(vertical: 10),
             child: Padding(
@@ -36,7 +55,7 @@ class ConsonantScreen extends StatelessWidget {
                         title: Text('$letter 로 시작하는 단어'),
                         content: Wrap(
                           spacing: 10,
-                          children: (consonantWords[letter] ?? []).map((word) {
+                          children: words.map((word) {
                             return ElevatedButton(
                               child: Text(word),
                               onPressed: () => tts.speak(word),
